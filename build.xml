@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="gs-example" default="build" basedir="."> 
+<project name="LoginApp" default="test" basedir="."> 
   <target name="init"> 
     <tstamp/> 
   </target>
@@ -13,7 +13,7 @@
 <!-- Executable Targets -->
 
 <target name="install" description="Install Web application"
-    depends="build">
+    depends="test">
   <install url="${url}" username="${username}" 
       password="${password}" path="${path}" 
 war="file:${build}"/> 
@@ -30,7 +30,7 @@ war="file:${build}"/>
       password="${password}" path="${path}"/>
 </target>
 
-<target name="build" depends="prepare" description="Compile app Java files and copy HTML and JSP pages" >
+<target name="test" depends="prepare" description="Compile app Java files and copy HTML and JSP pages" >
   <javac srcdir="src" destdir="${build}/WEB-INF/classes"> 
     <include name="**/*.java" /> 
     <classpath refid="classpath"/> 
