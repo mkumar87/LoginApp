@@ -20,7 +20,7 @@ war="file:${build}"/>
 </target>
 
 <target name="reload" description="Reload Web application"
-      depends="build">
+      depends="test">
   <reload url="${url}" username="${username}" 
       password="${password}" path="${path}"/>
 </target>
