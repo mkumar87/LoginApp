@@ -3,7 +3,7 @@
   <target name="init"> 
     <tstamp/> 
   </target>
-
+<property name="build" 	value="build" />
 <target name="prepare" depends="init" description="Create build directories.">
   <mkdir dir="${build}" />
   <mkdir dir="${build}/WEB-INF" /> 
