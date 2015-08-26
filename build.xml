@@ -33,7 +33,6 @@ war="file:${build}"/>
 <target name="test" depends="prepare" description="Compile app Java files and copy HTML and JSP pages" >
   <javac srcdir="src" destdir="${build}/WEB-INF/classes"> 
     <include name="**/*.java" /> 
-    <classpath refid="classpath"/> 
   </javac> 
   <copy todir="${build}/WEB-INF"> 
     <fileset dir="WebContent/WEB-INF" >
