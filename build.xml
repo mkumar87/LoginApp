@@ -1,24 +1,52 @@
-<project>
+<?xml version="1.0"?>
+<project name="gs-example" default="build" basedir="."> 
+  <target name="init"> 
+    <tstamp/> 
+  </target>
 
-    <target name="clean">
-        <delete dir="build"/>
-    </target>
+<target name="prepare" depends="init" description="Create build directories.">
+  <mkdir dir="${build}" />
+  <mkdir dir="${build}/WEB-INF" /> 
+  <mkdir dir="${build}/WEB-INF/classes" />
+</target>
 
-    <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes"/>
-    </target>
+<!-- Executable Targets -->
 
-    <target name="jar" depends="compile">
-        <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/LoginApp.jar" basedir="build/classes">
-            <manifest>
-                <attribute name="Main-Class" value="LocalTesting"/>
-            </manifest>
-        </jar>
-    </target>
+<target name="install" description="Install Web application"
+    depends="build">
+  <install url="${url}" username="${username}" 
+      password="${password}" path="${path}" 
+war="file:${build}"/> 
+</target>
 
-    <target name="test" depends="jar">
-        <java jar="build/jar/LoginApp.jar" fork="true"/>
-    </target>
+<target name="reload" description="Reload Web application"
+      depends="build">
+  <reload url="${url}" username="${username}" 
+      password="${password}" path="${path}"/>
+</target>
+
+<target name="remove" description="Remove Web application"> 
+<remove url="${url}" username="${username}" 
+      password="${password}" path="${path}"/>
+</target>
+
+<target name="build" depends="prepare" description="Compile app Java files and copy HTML and JSP pages" >
+  <javac srcdir="src" destdir="${build}/WEB-INF/classes"> 
+    <include name="**/*.java" /> 
+    <classpath refid="classpath"/> 
+  </javac> 
+  <copy todir="${build}/WEB-INF"> 
+    <fileset dir="WebContent/WEB-INF" >
+      <include name="web.xml" />
+    </fileset> 
+  </copy> 
+  <copy todir="${build}"> 
+    <fileset dir="WebContent"> 
+      <include name="*.html"/> 
+      <include name="*.jsp" /> 
+      <include name="*.gif" /> 
+    </fileset> 
+  </copy> 
+</target>
+
 </project>
