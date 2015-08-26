@@ -4,8 +4,8 @@
     <tstamp/> 
   </target>
   
-  <path id="classpath">
-	  <fileset dir="."> 
+ <path id="classpath">
+	  <fileset dir="common/lib"> 
 	    <include name="*.jar"/>
 	  </fileset>
 	</path> 
