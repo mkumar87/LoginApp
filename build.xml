@@ -1,59 +1,110 @@
 <?xml version="1.0"?>
-<project name="LoginApp" default="test" basedir="."> 
-  <target name="init"> 
-    <tstamp/> 
-  </target>
-  
- <path id="classpath">
-	  <fileset dir="common/lib"> 
-	    <include name="*.jar"/>
-	  </fileset>
-	</path> 
+<project name="LoginApp" default="test" basedir=".">
+    <description>LoginApp Project</description>
+    <!-- Global vars -->
+    <property environment="env" />
+    <property name="project.name" value="LoginApp" />
+    <property name="LoginApp.location" value="." />
+    <property name="archive.name" value="${project.name}.war" />
+    <property name="staging.dir" value="${LoginApp.location}/.staging" />
+
+    <path id="project.classpath">
+        <pathelement location="build/classes" />
+        <fileset dir="WebContent/WEB-INF/lib/">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="common/lib">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <!-- TaskDefs -->
+    <path id="buildtimestamp.classpath">
+        <pathelement location="build_libs/timeStamper.jar" />
+    </path>
+
+    <taskdef name="buildtimestamp" classname="timeStamper.Stamp">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
 	
-<property name="build" 	value="build" />
-<target name="prepare" depends="init" description="Create build directories.">
-  <mkdir dir="${build}" />
-  <mkdir dir="${build}/WEB-INF" /> 
-  <mkdir dir="${build}/WEB-INF/classes" />
-</target>
+    <taskdef name="buildinfo" classname="buildInfo.BuildInfo">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
+	
+    <taskdef name="manifestWriter" classname="manifest.ManifestWriter">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
 
-<!-- Executable Targets -->
+    <path id="yui-compressor.classpath">
+        <pathelement location="build_libs/yui-compressor-ant-task-0.5.jar" />
+        <pathelement location="build_libs/yuicompressor-2.4.7.jar" />
+    </path>
 
-<target name="install" description="Install Web application"
-    depends="test">
-  <install url="${url}" username="${username}" 
-      password="${password}" path="${path}" 
-war="file:${build}"/> 
-</target>
+    <taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+        <classpath refid="yui-compressor.classpath" />
+    </taskdef>
 
-<target name="reload" description="Reload Web application"
-      depends="test">
-  <reload url="${url}" username="${username}" 
-      password="${password}" path="${path}"/>
-</target>
+    <!-- Targets -->
 
-<target name="remove" description="Remove Web application"> 
-<remove url="${url}" username="${username}" 
-      password="${password}" path="${path}"/>
-</target>
+	
+    <target name="init">
+        <property name="init.executed" value="true" />
+        <mkdir dir="build/classes" />
+    </target>
 
-<target name="test" depends="prepare" description="Compile app Java files and copy HTML and JSP pages" >
-  <javac srcdir="src" destdir="${build}/WEB-INF/classes"> 
-    <include name="**/*.java" /> 
-    <classpath refid="classpath"/>
-  </javac> 
-  <copy todir="${build}/WEB-INF"> 
-    <fileset dir="WebContent/WEB-INF" >
-      <include name="web.xml" />
-    </fileset> 
-  </copy> 
-  <copy todir="${build}"> 
-    <fileset dir="WebContent"> 
-      <include name="*.html"/> 
-      <include name="*.jsp" /> 
-      <include name="*.gif" /> 
-    </fileset> 
-  </copy> 
-</target>
+    <target name="compile">
+        <echo message="Compiling Build file" />
+        <javac destdir="build/classes" includeantruntime="false" nowarn="on" includes="**/*.java" debug="true">
+            <src path="src" />
+            <classpath refid="project.classpath" />
+        </javac>
+    </target>
+    	
+    <target name="compress">
+        <yui-compressor warn="false" excludes="WebContent/Spec" fromDir="WebContent" toDir="WebContent" jsSuffix=".min.js" cssSuffix=".min.css">
+        	<exclude name="js/**/*spec*.js"/>
+        	<include name="js/**/*.js" />
+            <exclude name="js/**/*.min.js"/>
+            <include name="css/**/*.css" />
+            <exclude name="css/**/*.min.css"/>
+        </yui-compressor>            
+    </target>
+	
+    <target name="stage" depends="init, compile, compress" description=" copies all of project's resources and build artifacts into a form that's ready for archive creation; staging directory can be overridden via the &quot;staging.dir&quot; property">
+        <delete dir="${staging.dir}" quiet="true" />
+        <mkdir dir="${staging.dir}" />
+        <copy todir="${staging.dir}">
+            <fileset dir="WebContent">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy todir="${staging.dir}/WEB-INF/">
+            <fileset dir="build">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy todir="${staging.dir}/WEB-INF/classes">
+            <fileset dir="properties">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <buildtimestamp file="${staging.dir}/WEB-INF/jsp/_build_.jspf" />
+        <buildinfo file="${staging.dir}/WEB-INF/jsp/_build_info_.jspf" tagFile="${LoginApp.location}/CVS/Tag"/>
+        <!-- <manifestWriter file="${staging.dir}/META-INF/MANIFEST.MF"/> -->
+    </target>
 
+    <target name="test" depends="clean,stage" description=" creates an archive containing all projects's resources and build artifacts; archive name and location can be overridden via the &quot;archive.path&quot; property">
+        <mkdir dir="dist" />
+        <zip destfile="dist/${archive.name}" encoding="UTF8" whenempty="create">
+            <fileset dir="${staging.dir}" />
+        </zip>
+    </target>
+	
+   
+    <target name="clean">
+        <delete dir="${staging.dir}" quiet="true" />
+        <delete dir="build/classes" />
+        <delete file="${project.name}.war" />
+    </target>
+	
 </project>
