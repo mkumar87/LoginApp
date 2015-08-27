@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="LoginApp" default="test" basedir=".">
     <description>LoginApp Project</description>
-   <!-- <import file="buildTest.xml" />
-     Global vars -->
+    <import file="buildTest.xml" />
+     <!--Global vars -->
     <property environment="env" />
     <property name="project.name" value="LoginApp" />
     <property name="LoginApp.location" value="." />
