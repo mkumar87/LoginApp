@@ -22,7 +22,12 @@
 					<path refid="project.classpath" />
 		</path>
 
-
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		  <classpath>
+		    <pathelement location="common/lib/ant-contrib.jar" />
+		  </classpath>
+		</taskdef>
+	
     <!-- TaskDefs 
     <path id="buildtimestamp.classpath">
         <pathelement location="build_libs/timeStamper.jar" />
@@ -34,7 +39,7 @@
 	
     <taskdef name="buildinfo" classname="buildInfo.BuildInfo">
         <classpath refid="buildtimestamp.classpath" />
-    </taskdef>-->
+    </taskdef>
 	
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 	  <classpath>
@@ -52,7 +57,7 @@
 
     <taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
         <classpath refid="yui-compressor.classpath" />
-    </taskdef>
+    </taskdef>-->
 
     <!-- Targets -->
 
