@@ -23,7 +23,7 @@ String message = request.getAttribute("message")!=null?(String)request.getAttrib
 <div class="layout">
 <div class="VZlogo"><IMG title="Verizon" alt="Verizon" style="margin-left: -18px;"
 	src="resources/VerizonLogo.png" width = "110%" height = "110%" ></div>
-<div class="app-name">Car Pooling System</div>
+<div class="app-name">Dispatch Technician</div>
 <div class="app-support">&nbsp;<BR>
 Email: <A href="mailto:VDSI@one.verizon.com">vdsi@gmail.com</A><BR>
 &nbsp;<BR>
@@ -91,48 +91,25 @@ Email: <A href="mailto:VDSI@one.verizon.com">vdsi@gmail.com</A><BR>
 		<td style="width:70%;">
 			<div class="block" >
 			<h1>Verizon Dispatch Technician System</h1><br>
-			Dear All, Car Pooling saves money and reduces congestion on our roads and highways.
-			It also gives you the opportunity to develop new friendships with co workers.
-			There are a number of benefits when two or more people share a ride in one vehicle.
+			Dear All, Dispatchers are communications personnel responsible for receiving and 
+			transmitting pure and reliable messages, tracking vehicles and equipment, and 
+			recording other important information.[1] A number of organizations, including telecom 
+			services,police and fire departments, emergency medical services, taxicab providers, 
+			trucking companies,railroads, and public utility companies, use dispatchers to relay 
+			information and coordinate their operations. 
 			
-			<h4>Car Pooling is better for the environment</h4>
-			Having fewer cars on the road means reduced Greenhouse Gas (GHG) emissions and
-			improved air quality. 
+			Essentially, the dispatcher is the "conductor" of the force, and is responsible for 
+			the direction of all units within it.
 			<br>
-			<h4>It is good for your health</h4>
-			According to Environment Canada, air pollution caused by vehicular travel is linked
-			to a number of health concerns including respiratory diseases, cardiovascular disease,
-			allergies and neurological effects.  By car Pooling, you help reduce these health risks
-			for yourself and everyone else. Research also suggests that car Pooling is less
-			stress full than commuting alone.  
-			<br>
-			<h4>Car Pooling is convenient</h4>
-			Car Pooling provides commuting convenience comparable to driving alone, with less
-			stress and with the added bonus of companionship while you are commuting.  Car Pooling
-			partners establish their own unique rules that best meet the needs of their car pool. 
-			<br>
-			<h4>Car Pooling improves your commuting options</h4>
-			Car Pooling offers a commuter option that may work better than other methods of
-			transportation. Car Pooling works best for people who live where transit service
-			may be limited or non-existent and compared to other options, car pooling may better
-			fit your schedule. 
-			<br>
-			<div class="VZFooter"><img title="Go Green" alt="Go Green" style="margin-left: -18px;"
-			src="resources/goGreen.gif" width = "110%" height = "110%" ></div>
-			<h4>Make new friends</h4>
-			Car Pooling is a great way to make new friends!
 			
-			<br>
-			<h3 style = "font-weight: bold; color: green;">SAVE FUEL. SAVE ENVIRONMENT. GO GREEN.</h3>
 			
-			<hr>
 		</td>
 	</tr>
 </table>
 	
 </div>
 <div class="layout">   
-       <div class="copyrights"><b>&copy; 2015 Designed by Team Hackers (Surendra Ganti, Pavan Akurathi, Pavan Satya) </b><a href="#">FAQ</a> |  <a href="#">Feedback</a></div>
+       <div class="copyrights"><b>&copy; 2015 Designed by Rockers (Jeeva, Muthu, Sakthi) </b><a href="#">FAQ</a> |  <a href="#">Feedback</a></div>
 </div>
 
 <script type="text/javascript">
