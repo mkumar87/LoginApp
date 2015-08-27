@@ -13,10 +13,7 @@
    
     <path id="project.classpath">
         <pathelement location="build/classes" />
-        <fileset dir="WebContent/WEB-INF/lib/">
-            <include name="*.jar" />
-        </fileset>
-        <fileset dir="build_libs/">
+        <fileset dir="common/lib/">
             <include name="*.jar" />
         </fileset>
     </path>
