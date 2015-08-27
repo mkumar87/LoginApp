@@ -4,6 +4,6 @@ applications:
   memory: 256M
   instances: 1
   path: .
-  command: cf push LoginApp -p LoginApp.war -b https://github.com/cloudfoundry/java-buildpack 
+  command: cf push LoginApp -p /home/travis/build/mkumar87/LoginApp/dist/LoginApp.war -b https://github.com/cloudfoundry/java-buildpack 
   services:
     - LoginApp-Services
