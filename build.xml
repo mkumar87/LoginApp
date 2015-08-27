@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <project name="LoginApp" default="test" basedir=".">
     <description>LoginApp Project</description>
+    <import file="buildTest.xml" />
     <!-- Global vars -->
     <property environment="env" />
     <property name="project.name" value="LoginApp" />
@@ -33,7 +34,7 @@
     </taskdef> -->
 
     <!-- Targets -->
-	<target name="unit-test" depends="build-test, run-junit-tests,create-junit-report" />
+    <target name="unit-test" depends="build-test, run-junit-tests,create-junit-report" />
 
     <target name="init">
         <property name="init.executed" value="true" />
