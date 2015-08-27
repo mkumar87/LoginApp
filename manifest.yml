@@ -3,5 +3,4 @@ applications:
 - name: LoginApp
   memory: 256M
   instances: 1
-  path: /home/travis/build/mkumar87/LoginApp/dist/
-  command: cf push LoginApp -p LoginApp.war
+  path: /home/travis/build/mkumar87/LoginApp/dist/LoginApp.war
