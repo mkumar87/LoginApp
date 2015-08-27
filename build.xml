@@ -19,21 +19,9 @@
     </path>
 
     <!-- TaskDefs -->
-    <path id="buildtimestamp.classpath">
+   <!--  <path id="buildtimestamp.classpath">
         <pathelement location="build_libs/timeStamper.jar" />
     </path>
-
-    <taskdef name="buildtimestamp" classname="timeStamper.Stamp">
-        <classpath refid="buildtimestamp.classpath" />
-    </taskdef>
-	
-    <taskdef name="buildinfo" classname="buildInfo.BuildInfo">
-        <classpath refid="buildtimestamp.classpath" />
-    </taskdef>
-	
-    <taskdef name="manifestWriter" classname="manifest.ManifestWriter">
-        <classpath refid="buildtimestamp.classpath" />
-    </taskdef>
 
     <path id="yui-compressor.classpath">
         <pathelement location="build_libs/yui-compressor-ant-task-0.5.jar" />
@@ -42,7 +30,7 @@
 
     <taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
         <classpath refid="yui-compressor.classpath" />
-    </taskdef>
+    </taskdef> -->
 
     <!-- Targets -->
 
@@ -70,7 +58,7 @@
         </yui-compressor>            
     </target>
 	
-    <target name="stage" depends="init, compile, compress" description=" copies all of project's resources and build artifacts into a form that's ready for archive creation; staging directory can be overridden via the &quot;staging.dir&quot; property">
+    <target name="stage" depends="init, compile" description=" copies all of project's resources and build artifacts into a form that's ready for archive creation; staging directory can be overridden via the &quot;staging.dir&quot; property">
         <delete dir="${staging.dir}" quiet="true" />
         <mkdir dir="${staging.dir}" />
         <copy todir="${staging.dir}">
