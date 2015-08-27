@@ -2,7 +2,7 @@
 <html class="vz-theme">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Car Pooling System</title>
+<title>Dispatch Technician</title>
 <LINK href="resources/jquery-contextmenu.css"
 	rel="stylesheet" type="text/css">
 <LINK href="resources/jquery.jscrollpane.css"
@@ -25,7 +25,7 @@ String message = request.getAttribute("message")!=null?(String)request.getAttrib
 	src="resources/VerizonLogo.png" width = "110%" height = "110%" ></div>
 <div class="app-name">Car Pooling System</div>
 <div class="app-support">&nbsp;<BR>
-Email: <A href="mailto:VDSI-CarPoolingSystem@one.verizon.com">vdsi.carpooling@gmail.com</A><BR>
+Email: <A href="mailto:VDSI@one.verizon.com">vdsi@gmail.com</A><BR>
 &nbsp;<BR>
 </div>
 </div>
@@ -84,29 +84,13 @@ Email: <A href="mailto:VDSI-CarPoolingSystem@one.verizon.com">vdsi.carpooling@gm
 			
 			
 			<!-- Start Quick Links  -->
-			<div class="block">
-			<h1>Support Numbers</h1>
-			<div class="text">
-			<ul class="quick-links">
-				<li><b>HelpDesk Support (HYDERABAD):</b>
-				<div style="padding-left: 100px;">040 - 4400 5949 (Titus)</div>
-				<div style="padding-left: 100px;">040 - 4400 7100 (Orion)</div>
-				</li>
-				<li><b>HelpDesk Support (CHENNAI): </b>
-				<div style="padding-left: 100px;">044 - 4394 0700 (Olympia)</div>
-				<div style="padding-left: 100px;">044 - 6682 6200 (Rmz)</div>
-				</li>
-			</ul>
-			<br>
-			<br>
-			</div>
-			</div>
+			
 			<!-- End Quick Links -->
 		</td>
 	
 		<td style="width:70%;">
 			<div class="block" >
-			<h1>VDSI Car Pooling System</h1><br>
+			<h1>Verizon Dispatch Technician System</h1><br>
 			Dear All, Car Pooling saves money and reduces congestion on our roads and highways.
 			It also gives you the opportunity to develop new friendships with co workers.
 			There are a number of benefits when two or more people share a ride in one vehicle.
