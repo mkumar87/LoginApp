@@ -59,7 +59,7 @@
         </yui-compressor>            
     </target>
 	
-    <target name="stage" depends="init, compile" description=" copies all of project's resources and build artifacts into a form that's ready for archive creation; staging directory can be overridden via the &quot;staging.dir&quot; property">
+    <target name="stage" depends="init, compile,build-test, run-junit-tests,create-junit-report" description=" copies all of project's resources and build artifacts into a form that's ready for archive creation; staging directory can be overridden via the &quot;staging.dir&quot; property">
         <delete dir="${staging.dir}" quiet="true" />
         <mkdir dir="${staging.dir}" />
         <copy todir="${staging.dir}">
