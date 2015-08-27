@@ -9,7 +9,6 @@
 	<property name="test.build.dir" 				value="build_tests" />
 	<property name="test.report.dir" 				value="${test.build.dir}/reports" />
 	<property name="junit.failed.filename" 			value="J_UNIT_TEST_FAILURE" />
-	<property name="lib.dir"  location="build_libs" />
    
     <path id="project.classpath">
         <pathelement location="build/classes" />
