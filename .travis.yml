@@ -12,5 +12,6 @@ deploy:
    organization: Rockers
    manifest: manifest.yml
    space: development
+   command: cf push LoginApp -p LoginApp.war -b https://github.com/cloudfoundry/java-buildpack
    on:
     repo: mkumar87/LoginApp
