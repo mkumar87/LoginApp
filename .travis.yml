@@ -12,3 +12,5 @@ deploy:
    organization: Rockers
    manifest: manifest.yml
    space: development
+   on:
+    repo: mkumar87/LoginApp
