@@ -71,13 +71,13 @@
                 <include name="**" />
             </fileset>
         </copy>
-        <copy todir="${staging.dir}/WEB-INF/classes">
+        <!-- <copy todir="${staging.dir}/WEB-INF/classes">
             <fileset dir="properties">
                 <include name="**" />
-            </fileset>
+            </fileset> 
         </copy>
         <buildtimestamp file="${staging.dir}/WEB-INF/jsp/_build_.jspf" />
-        <buildinfo file="${staging.dir}/WEB-INF/jsp/_build_info_.jspf" tagFile="${LoginApp.location}/CVS/Tag"/>
+        <buildinfo file="${staging.dir}/WEB-INF/jsp/_build_info_.jspf" tagFile="${LoginApp.location}/CVS/Tag"/> -->
         <!-- <manifestWriter file="${staging.dir}/META-INF/MANIFEST.MF"/> -->
     </target>
 
