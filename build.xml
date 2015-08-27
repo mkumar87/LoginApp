@@ -33,8 +33,8 @@
         <classpath refid="yui-compressor.classpath" />
     </taskdef> -->
 
-    <!-- Targets -->
-    <target name="unit-test" depends="build-test, run-junit-tests,create-junit-report" />
+    <!-- Targets 
+    <target name="unit-test" depends="build-test, run-junit-tests,create-junit-report" />-->
 
     <target name="init">
         <property name="init.executed" value="true" />
