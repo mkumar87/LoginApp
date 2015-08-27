@@ -10,4 +10,4 @@ deploy:
    password: Mylife12
    api: https://api.run.pivotal.io
    organization: Rockers
-   space: staging
+   space: development
