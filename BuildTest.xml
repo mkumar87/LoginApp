@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<project xmlns:antcontrib="antlib:net.sf.antcontrib">
+    <description>PcGUI Project</description>
+
+    <!-- Global vars -->
+    <property environment="env" />
+	<property name="build.compiler" value="javac1.6" />
+	<property name="test.src.dir" 					value="test" />
+	<property name="test.build.dir" 				value="build_tests" />
+	<property name="test.report.dir" 				value="${test.build.dir}/reports" />
+	<property name="junit.failed.filename" 			value="J_UNIT_TEST_FAILURE" />
+	<property name="lib.dir"  location="build_libs" />
+   
+    <path id="project.classpath">
+        <pathelement location="build/classes" />
+        <fileset dir="WebContent/WEB-INF/lib/">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="build_libs/">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+	
+	<path id="build.test.class.path">
+					<pathelement location="${test.build.dir}" />
+					<path refid="project.classpath" />
+		</path>
+
+
+    <!-- TaskDefs -->
+    <path id="buildtimestamp.classpath">
+        <pathelement location="build_libs/timeStamper.jar" />
+    </path>
+
+    <taskdef name="buildtimestamp" classname="timeStamper.Stamp">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
+	
+    <taskdef name="buildinfo" classname="buildInfo.BuildInfo">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="${lib.dir}/ant-contrib.jar" />
+	  </classpath>
+	</taskdef>
+    <taskdef name="manifestWriter" classname="manifest.ManifestWriter">
+        <classpath refid="buildtimestamp.classpath" />
+    </taskdef>
+
+    <path id="yui-compressor.classpath">
+        <pathelement location="build_libs/yui-compressor-ant-task-0.5.jar" />
+        <pathelement location="build_libs/yuicompressor-2.4.7.jar" />
+    </path>
+
+    <taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+        <classpath refid="yui-compressor.classpath" />
+    </taskdef>
+
+    <!-- Targets -->
+
+	<target name="init-target-test">
+			<var name="target" unset="true"/>
+			<property name="target" value="test" />
+		</target>
+
+		<target name="init-target-test-clean">
+			<var name="target" unset="true"/>
+			<property name="target" value="test-clean" />
+		</target>
+
+		<target name="init-build-test-class-path" />
+		
+		<target name="build-test" depends="init-build-test-class-path">
+			
+			<mkdir dir="${test.build.dir}" />
+			
+			<javac sourcepath="${test.src.dir}" 
+				   srcdir="${test.src.dir}"
+				   includes="**/*SOTest_.java"
+				   destdir="${test.build.dir}" 
+				   classpathref="build.test.class.path"
+				   debug="on"
+				   encoding="UTF-8"
+				   fork="yes"
+				   memoryinitialsize="512m"
+				includeantruntime="false">
+			</javac>
+		</target>
+		
+		<target name="clean-tests" depends="init-target-test-clean">
+			<delete dir="${test.build.dir}" />
+			<delete file="${junit.failed.filename}" />
+		</target>
+		
+		<target name="run-junit-tests" depends="init-build-test-class-path,generate-junit-xml-results" />
+		
+		<target name="generate-junit-xml-results" >
+			
+			<pathconvert property="classpathProp" refid="build.test.class.path"/>
+				<echo>Classpath is Testing is ${classpathProp}</echo>
+
+			<junit printsummary="yes" showoutput="yes"
+				haltonerror="off" errorproperty="junit.error"
+				haltonfailure="off" failureproperty="junit.failed" 
+				logfailedtests="false" timeout="60000"
+				fork="off" forkmode="perTest">
+				
+				 <!--<sysproperty key="ivapp" value="H:\\prop\\unittest.properties"/>-->
+				<sysproperty key="ivapp" value="${test.src.dir}/application.properties"/>
+				
+				<formatter type="xml" />
+
+				<classpath refid="build.test.class.path" />
+
+				<batchtest todir="${test.build.dir}">
+					<fileset dir="${test.src.dir}">
+						<include name="**/*Test_.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+			
+	        <!-- TO DO Insert creation of file to signal last test run success -->
+			<if>
+				<or>
+	            	<equals arg1="${junit.failed}" arg2="true" />
+					<equals arg1="${junit.error}" arg2="true" />
+				</or>
+	            <then>
+					<echo message="J-Unit Test Failure." file="${junit.failed.filename}" />
+	            </then>
+	            <else>
+	            	<delete file="${junit.failed.filename}" />
+	            </else>
+	        </if>
+		</target>
+		
+		
+		<target name="create-junit-report">
+			
+			<delete dir="${test.report.dir}"/>
+			<mkdir dir="${test.report.dir}" />
+			
+			<junitreport todir="${test.report.dir}">
+			
+				<fileset dir="${test.build.dir}">
+					<include name="TEST-*.xml" />
+				</fileset>
+				
+				<report format="frames" todir="${test.report.dir}" />
+			</junitreport>
+		</target>
+		
+</project>
