@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns:antcontrib="antlib:net.sf.antcontrib">
-    <description>PcGUI Project</description>
+    <description>LoginApp Project</description>
 
     <!-- Global vars -->
     <property environment="env" />
@@ -27,7 +27,7 @@
 		</path>
 
 
-    <!-- TaskDefs -->
+    <!-- TaskDefs 
     <path id="buildtimestamp.classpath">
         <pathelement location="build_libs/timeStamper.jar" />
     </path>
@@ -38,7 +38,7 @@
 	
     <taskdef name="buildinfo" classname="buildInfo.BuildInfo">
         <classpath refid="buildtimestamp.classpath" />
-    </taskdef>
+    </taskdef>-->
 	
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 	  <classpath>
@@ -78,7 +78,7 @@
 			
 			<javac sourcepath="${test.src.dir}" 
 				   srcdir="${test.src.dir}"
-				   includes="**/*SOTest_.java"
+				   includes="**/*Test.java"
 				   destdir="${test.build.dir}" 
 				   classpathref="build.test.class.path"
 				   debug="on"
