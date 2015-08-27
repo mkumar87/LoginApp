@@ -4,6 +4,7 @@ java:
 
 deploy:
    edge: true
+   skip_cleanup: true
    provider: cloudfoundry
    username: mkumar87@gmail.com
    password: Mylife12
